@@ -3,169 +3,510 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English Revision Grade 3</title>
+<title>English Fun - Grade 3</title>
+
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f0f5ff;
-  text-align: center;
   margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe, #fce7f3, #ede9fe);
+  color: #26334a;
+  min-height: 100vh;
 }
-h1 { color: #304c91; }
-h2 { color: #304c91; }
-.menu, .box {
-  background: white;
-  max-width: 650px;
-  margin: 15px auto;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px #ccd5e5;
-}
-button {
-  background: #5278d8;
+
+header {
+  text-align: center;
+  padding: 35px 15px;
+  background: linear-gradient(120deg, #6366f1, #a855f7);
   color: white;
-  border: 0;
-  padding: 12px 18px;
-  margin: 7px;
-  border-radius: 10px;
+  border-radius: 0 0 35px 35px;
+}
+
+header h1 {
+  font-size: 34px;
+  margin: 5px;
+}
+
+header p {
+  font-size: 17px;
+}
+
+.container {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 15px;
+}
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.topic {
+  border: none;
+  border-radius: 20px;
+  padding: 25px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 5px 15px #00000015;
+  transition: 0.2s;
+}
+
+.topic:hover {
+  transform: translateY(-4px);
+}
+
+.topic span {
+  display: block;
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.quiz {
+  display: none;
+  background: white;
+  border-radius: 25px;
+  padding: 25px;
+  box-shadow: 0 8px 25px #00000018;
+}
+
+.progress {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  transition: 0.3s;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.question {
+  font-size: 23px;
+  text-align: center;
+  margin: 30px 0 20px;
+  font-weight: bold;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.option {
+  padding: 17px 10px;
+  border: 2px solid #e5e7eb;
+  border-radius: 15px;
+  background: #f8fafc;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #ede9fe;
+  border-color: #8b5cf6;
+}
+
+.correct {
+  background: #dcfce7 !important;
+  border-color: #22c55e !important;
+}
+
+.wrong {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.feedback {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  min-height: 30px;
+  margin: 18px 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.main-btn {
+  border: none;
+  padding: 13px 20px;
+  border-radius: 12px;
+  color: white;
+  background: #6366f1;
   font-size: 16px;
   cursor: pointer;
 }
-button:hover { background: #304c91; }
-.option {
-  display: block;
-  width: 90%;
-  max-width: 300px;
-  margin: 10px auto;
+
+.main-btn:hover {
+  background: #4f46e5;
 }
-#result { font-weight: bold; color: green; }
+
+.sound-btn {
+  display: block;
+  margin: 0 auto 15px;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  background: #fef3c7;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.result {
+  display: none;
+  text-align: center;
+  background: white;
+  padding: 35px 20px;
+  border-radius: 25px;
+}
+
+.result h2 {
+  color: #6366f1;
+  font-size: 30px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #64748b;
+}
+
+@media(max-width:500px) {
+  header h1 {
+    font-size: 27px;
+  }
+  .topic {
+    font-size: 16px;
+  }
+  .options {
+    grid-template-columns: 1fr;
+  }
+  .question {
+    font-size: 20px;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<h1>📚 ENGLISH REVISION</h1>
-<h2>GRADE 3</h2>
-<p>Let's learn English and have fun!</p>
+<header>
+  <h1>🌈 English Fun!</h1>
+  <p>Learn English and have fun!</p>
+  <h3>⭐ Grade 3 ⭐</h3>
+</header>
 
-<div class="menu">
-<button onclick="show('alphabet')">🔤 ALPHABET</button>
-<button onclick="show('numbers')">🔢 NUMBERS</button>
-<button onclick="show('colours')">🎨 COLOURS</button>
-<button onclick="show('school')">🎒 SCHOOL OBJECTS</button>
+<div class="container">
+
+<div id="home">
+  <h2 style="text-align:center">Choose a topic 👇</h2>
+
+  <div class="topics">
+    <button class="topic" onclick="startTopic('alphabet')">
+      <span>🔤</span>Alphabet
+    </button>
+
+    <button class="topic" onclick="startTopic('numbers')">
+      <span>🔢</span>Numbers
+    </button>
+
+    <button class="topic" onclick="startTopic('colours')">
+      <span>🎨</span>Colours
+    </button>
+
+    <button class="topic" onclick="startTopic('school')">
+      <span>🎒</span>School Objects
+    </button>
+  </div>
 </div>
 
-<div class="box">
-<h2 id="title">Welcome!</h2>
-<div id="question">Choose a topic to start!</div>
-<div id="answers"></div>
-<p id="result"></p>
-<p id="score">⭐ Score: 0</p>
-<button onclick="next()">Next ➡️</button>
-<button onclick="home()">Home 🏠</button>
+<div class="quiz" id="quiz">
+  <div class="info">
+    <span id="topicName"></span>
+    <span id="score">⭐ Score: 0</span>
+  </div>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <div class="info">
+    <span id="number"></span>
+    <span>10 questions</span>
+  </div>
+
+  <div class="question" id="question"></div>
+
+  <button class="sound-btn" id="sound" onclick="speak()">
+    🔊 Listen
+  </button>
+
+  <div class="options" id="options"></div>
+
+  <div class="feedback" id="feedback"></div>
+
+  <div class="controls">
+    <button class="main-btn" onclick="goHome()">🏠 Home</button>
+    <button class="main-btn" id="next" onclick="nextQuestion()" disabled>
+      Next ➜
+    </button>
+  </div>
 </div>
+
+<div class="result" id="result">
+  <h2>🏆 Well done!</h2>
+  <h3 id="finalScore"></h3>
+  <p id="message"></p>
+  <button class="main-btn" onclick="goHome()">🏠 Back to topics</button>
+  <button class="main-btn" onclick="restart()">🔄 Try again</button>
+</div>
+
+</div>
+
+<footer>🌟 English Fun for Grade 3 🌟</footer>
 
 <script>
+
 const tasks = {
+
 alphabet: {
-title:"🔤 ALPHABET",
-questions:[
-["A, B, __, D","C","E","F","G"],
-["Match: Small letter of B","b","d","p","q"]
-],
-answers:[0,0]
+name: "🔤 Alphabet",
+questions: [
+["What letter comes after A?", ["B","C","D","E"], "B"],
+["What letter comes before D?", ["A","B","C","E"], "C"],
+["Choose the missing letter: A, B, __, D", ["E","C","F","G"], "C"],
+["Which is a capital letter?", ["b","d","A","e"], "A"],
+["Which is a small letter?", ["G","H","m","T"], "m"],
+["What letter comes after M?", ["L","N","O","P"], "N"],
+["Choose the missing letter: X, Y, __", ["A","Z","W","V"], "Z"],
+["Which letter starts the word CAT?", ["K","C","S","T"], "C"],
+["Which letter starts the word DOG?", ["B","D","G","O"], "D"],
+["How many letters are in the English alphabet?", ["24","25","26","27"], "26"]
+]
 },
-numbers:{
-title:"🔢 NUMBERS",
-questions:[
-["🍎🍎🍎 How many apples?","Three","Five","Two","Four"],
-["What is 7 in English?","Seven","Six","Eight","Ten"]
-],
-answers:[0,0]
+
+numbers: {
+name: "🔢 Numbers",
+questions: [
+["What number is TEN?", ["8","9","10","11"], "10"],
+["Choose the word for 5.", ["Four","Five","Six","Seven"], "Five"],
+["What number comes after 12?", ["10","11","13","14"], "13"],
+["What number comes before 8?", ["6","7","9","10"], "7"],
+["How do you spell 3?", ["Tree","Three","Thre","Free"], "Three"],
+["What is 4 + 2?", ["5","6","7","8"], "6"],
+["What is 10 - 3?", ["6","7","8","9"], "7"],
+["Which number is TWENTY?", ["12","20","2","10"], "20"],
+["Choose the word for 1.", ["One","Two","Three","Four"], "One"],
+["How do you spell 15?", ["Fiveteen","Fifteen","Fifty","Five"], "Fifteen"]
+]
 },
-colours:{
-title:"🎨 COLOURS",
-questions:[
-["🍎 What colour is an apple?","Red","Blue","Black","Pink"],
-["🌞 What colour is the sun?","Yellow","Green","Purple","White"]
-],
-answers:[0,0]
+
+colours: {
+name: "🎨 Colours",
+questions: [
+["🍎 What colour is an apple?", ["Blue","Red","Black","Purple"], "Red"],
+["🍌 What colour is a banana?", ["Yellow","Green","Pink","Blue"], "Yellow"],
+["🌿 What colour is grass?", ["Red","White","Green","Orange"], "Green"],
+["☁️ What colour are clouds?", ["Black","White","Pink","Brown"], "White"],
+["🧡 Which colour is this heart?", ["Blue","Orange","Green","Black"], "Orange"],
+["🍇 What colour are grapes?", ["Purple","Yellow","White","Red"], "Purple"],
+["🌊 What colour is the sea?", ["Blue","Pink","Brown","Yellow"], "Blue"],
+["🥕 What colour is a carrot?", ["Green","Orange","Black","Purple"], "Orange"],
+["🌸 What colour is a pink flower?", ["Pink","Blue","Grey","Brown"], "Pink"],
+["🖤 What colour is this heart?", ["White","Red","Black","Green"], "Black"]
+]
 },
-school:{
-title:"🎒 SCHOOL OBJECTS",
-questions:[
-["📚 What is it?","Book","Pen","Bag","Ruler"],
-["✏️ What is it?","Pencil","Chair","Desk","Book"]
-],
-answers:[0,0]
+
+school: {
+name: "🎒 School Objects",
+questions: [
+["✏️ What is this?", ["Pen","Pencil","Book","Ruler"], "Pencil"],
+["📚 What are these?", ["Books","Bags","Rulers","Pens"], "Books"],
+["🎒 What is this?", ["Desk","Bag","Chair","Book"], "Bag"],
+["📏 What is this?", ["Ruler","Pencil","Eraser","Pen"], "Ruler"],
+["🖊️ What is this?", ["Book","Pen","Bag","Desk"], "Pen"],
+["🪑 What is this?", ["Chair","Pencil","Ruler","Bag"], "Chair"],
+["📓 What is this?", ["Notebook","Eraser","Pen","Desk"], "Notebook"],
+["🖍️ What is this?", ["Crayon","Book","Bag","Ruler"], "Crayon"],
+["🧽 What is this?", ["Pencil","Eraser","Chair","Pen"], "Eraser"],
+["🖥️ What is this?", ["Computer","Book","Bag","Ruler"], "Computer"]
+]
 }
+
 };
 
-let current = [];
+let currentTopic = "";
 let index = 0;
 let points = 0;
 let answered = false;
 
-function show(topic) {
- current = tasks[topic].questions;
- index = 0;
- document.getElementById("title").innerText = tasks[topic].title;
- load();
+function startTopic(topic) {
+  currentTopic = topic;
+  index = 0;
+  points = 0;
+
+  document.getElementById("home").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+
+  document.getElementById("topicName").textContent = tasks[topic].name;
+
+  showQuestion();
 }
 
-function load() {
- answered = false;
- document.getElementById("question").innerText =
- (index+1)+". "+current[index][0];
- document.getElementById("result").innerText = "";
- let area = document.getElementById("answers");
- area.innerHTML = "";
- for(let i=1;i<=4;i++){
-  let b = document.createElement("button");
-  b.className = "option";
-  b.innerText = current[index][i];
-  b.onclick = () => check(i-1);
-  area.appendChild(b);
- }
- document.getElementById("score").innerText = "⭐ Score: "+points;
+function showQuestion() {
+  answered = false;
+
+  let q = tasks[currentTopic].questions[index];
+
+  document.getElementById("question").textContent = q[0];
+  document.getElementById("number").textContent =
+    "Question " + (index + 1) + " / 10";
+
+  document.getElementById("score").textContent =
+    "⭐ Score: " + points;
+
+  document.getElementById("bar").style.width =
+    (index / 10 * 100) + "%";
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("next").disabled = true;
+
+  let options = document.getElementById("options");
+  options.innerHTML = "";
+
+  q[1].forEach(answer => {
+    let button = document.createElement("button");
+    button.className = "option";
+    button.textContent = answer;
+    button.onclick = () => checkAnswer(button, answer);
+    options.appendChild(button);
+  });
 }
 
-function check(choice) {
- if(answered) return;
- answered = true;
- let correct = tasks[Object.keys(tasks).find(k=>tasks[k].questions===current)].answers[index];
- if(choice===correct){
-  points++;
-  document.getElementById("result").innerText = "✅ Correct! Well done!";
- } else {
-  document.getElementById("result").innerText =
-  "❌ Try again! Correct answer: "+current[index][correct+1];
- }
- document.getElementById("score").innerText = "⭐ Score: "+points;
+function checkAnswer(button, answer) {
+  if (answered) return;
+
+  answered = true;
+
+  let correct = tasks[currentTopic].questions[index][2];
+  let buttons = document.querySelectorAll(".option");
+
+  buttons.forEach(b => {
+    b.disabled = true;
+
+    if (b.textContent === correct) {
+      b.classList.add("correct");
+    }
+  });
+
+  if (answer === correct) {
+    points++;
+    document.getElementById("feedback").textContent =
+      "🎉 Correct! Well done!";
+    document.getElementById("feedback").style.color = "#16a34a";
+  } else {
+    button.classList.add("wrong");
+    document.getElementById("feedback").textContent =
+      "😊 Good try! Correct answer: " + correct;
+    document.getElementById("feedback").style.color = "#dc2626";
+  }
+
+  document.getElementById("score").textContent =
+    "⭐ Score: " + points;
+
+  document.getElementById("bar").style.width =
+    ((index + 1) / 10 * 100) + "%";
+
+  document.getElementById("next").disabled = false;
 }
 
-function next() {
- if(current.length===0) return;
- if(index<current.length-1){
+function nextQuestion() {
+  if (!answered) return;
+
   index++;
-  load();
- } else {
-  document.getElementById("question").innerText =
-  "🎉 Great job! You finished this section!";
-  document.getElementById("answers").innerHTML = "";
-  document.getElementById("result").innerText =
-  "Your score: "+points;
- }
+
+  if (index < 10) {
+    showQuestion();
+  } else {
+    showResult();
+  }
 }
 
-function home() {
- current=[];
- index=0;
- document.getElementById("title").innerText="Welcome!";
- document.getElementById("question").innerText="Choose a topic to start!";
- document.getElementById("answers").innerHTML="";
- document.getElementById("result").innerText="";
+function showResult() {
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("finalScore").textContent =
+    "Your score: " + points + " / 10 ⭐";
+
+  let message = "";
+
+  if (points === 10) {
+    message = "🌟 Excellent! Perfect score!";
+  } else if (points >= 7) {
+    message = "👏 Great job! Keep learning!";
+  } else if (points >= 5) {
+    message = "👍 Good work! Practise more!";
+  } else {
+    message = "💪 Keep trying! You can do it!";
+  }
+
+  document.getElementById("message").textContent = message;
 }
+
+function speak() {
+  let q = tasks[currentTopic].questions[index][0];
+
+  let speech = new SpeechSynthesisUtterance(q);
+  speech.lang = "en-US";
+  speech.rate = 0.85;
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(speech);
+}
+
+function goHome() {
+  speechSynthesis.cancel();
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("home").style.display = "block";
+}
+
+function restart() {
+  startTopic(currentTopic);
+}
+
 </script>
+
 </body>
 </html>
