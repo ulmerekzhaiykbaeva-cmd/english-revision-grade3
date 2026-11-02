@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Revision Grade 3</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f5ff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+h1 { color: #304c91; }
+h2 { color: #304c91; }
+.menu, .box {
+  background: white;
+  max-width: 650px;
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px #ccd5e5;
+}
+button {
+  background: #5278d8;
+  color: white;
+  border: 0;
+  padding: 12px 18px;
+  margin: 7px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover { background: #304c91; }
+.option {
+  display: block;
+  width: 90%;
+  max-width: 300px;
+  margin: 10px auto;
+}
+#result { font-weight: bold; color: green; }
+</style>
+</head>
+<body>
+
+<h1>📚 ENGLISH REVISION</h1>
+<h2>GRADE 3</h2>
+<p>Let's learn English and have fun!</p>
+
+<div class="menu">
+<button onclick="show('alphabet')">🔤 ALPHABET</button>
+<button onclick="show('numbers')">🔢 NUMBERS</button>
+<button onclick="show('colours')">🎨 COLOURS</button>
+<button onclick="show('school')">🎒 SCHOOL OBJECTS</button>
+</div>
+
+<div class="box">
+<h2 id="title">Welcome!</h2>
+<div id="question">Choose a topic to start!</div>
+<div id="answers"></div>
+<p id="result"></p>
+<p id="score">⭐ Score: 0</p>
+<button onclick="next()">Next ➡️</button>
+<button onclick="home()">Home 🏠</button>
+</div>
+
+<script>
+const tasks = {
+alphabet: {
+title:"🔤 ALPHABET",
+questions:[
+["A, B, __, D","C","E","F","G"],
+["Match: Small letter of B","b","d","p","q"]
+],
+answers:[0,0]
+},
+numbers:{
+title:"🔢 NUMBERS",
+questions:[
+["🍎🍎🍎 How many apples?","Three","Five","Two","Four"],
+["What is 7 in English?","Seven","Six","Eight","Ten"]
+],
+answers:[0,0]
+},
+colours:{
+title:"🎨 COLOURS",
+questions:[
+["🍎 What colour is an apple?","Red","Blue","Black","Pink"],
+["🌞 What colour is the sun?","Yellow","Green","Purple","White"]
+],
+answers:[0,0]
+},
+school:{
+title:"🎒 SCHOOL OBJECTS",
+questions:[
+["📚 What is it?","Book","Pen","Bag","Ruler"],
+["✏️ What is it?","Pencil","Chair","Desk","Book"]
+],
+answers:[0,0]
+}
+};
+
+let current = [];
+let index = 0;
+let points = 0;
+let answered = false;
+
+function show(topic) {
+ current = tasks[topic].questions;
+ index = 0;
+ document.getElementById("title").innerText = tasks[topic].title;
+ load();
+}
+
+function load() {
+ answered = false;
+ document.getElementById("question").innerText =
+ (index+1)+". "+current[index][0];
+ document.getElementById("result").innerText = "";
+ let area = document.getElementById("answers");
+ area.innerHTML = "";
+ for(let i=1;i<=4;i++){
+  let b = document.createElement("button");
+  b.className = "option";
+  b.innerText = current[index][i];
+  b.onclick = () => check(i-1);
+  area.appendChild(b);
+ }
+ document.getElementById("score").innerText = "⭐ Score: "+points;
+}
+
+function check(choice) {
+ if(answered) return;
+ answered = true;
+ let correct = tasks[Object.keys(tasks).find(k=>tasks[k].questions===current)].answers[index];
+ if(choice===correct){
+  points++;
+  document.getElementById("result").innerText = "✅ Correct! Well done!";
+ } else {
+  document.getElementById("result").innerText =
+  "❌ Try again! Correct answer: "+current[index][correct+1];
+ }
+ document.getElementById("score").innerText = "⭐ Score: "+points;
+}
+
+function next() {
+ if(current.length===0) return;
+ if(index<current.length-1){
+  index++;
+  load();
+ } else {
+  document.getElementById("question").innerText =
+  "🎉 Great job! You finished this section!";
+  document.getElementById("answers").innerHTML = "";
+  document.getElementById("result").innerText =
+  "Your score: "+points;
+ }
+}
+
+function home() {
+ current=[];
+ index=0;
+ document.getElementById("title").innerText="Welcome!";
+ document.getElementById("question").innerText="Choose a topic to start!";
+ document.getElementById("answers").innerHTML="";
+ document.getElementById("result").innerText="";
+}
+</script>
+</body>
+</html>
